@@ -171,6 +171,9 @@ func (d *DetailPage) View() string {
 	// 格式化展示每条评论
 	if len(d.Topic.Replies) > 0 {
 		for _, reply := range d.Topic.Replies {
+			if reply.Author == d.Topic.Author {
+				reply.Author += "(楼主)"
+			}
 			content.WriteString(subtitleStyle.Render(fmt.Sprintf("%s%s 于 %s 回复:",
 				IconAuthor,
 				reply.Author,
